@@ -1,92 +1,82 @@
-import BoCInput from '@/components/BoCInput';
+import JSONInput from '@/components/JSONInput';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import ResultDisplay from '@/components/ResultDisplay';
 import TLBSchema from '@/components/TLBSchema';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { decodeFromBoC, getExampleBoC } from '@/lib/tlb';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { encodeToBoC, getExampleJSON } from '@/lib/tlb';
 import * as Clipboard from 'expo-clipboard';
-import { Image } from 'expo-image';
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Alert, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function DecodeScreen() {
-  const [bocInput, setBocInput] = useState('');
-  const [decodedResult, setDecodedResult] = useState('');
+export default function EncodeScreen() {
+  const [jsonInput, setJsonInput] = useState('');
+  const [encodedResult, setEncodedResult] = useState('');
   const [error, setError] = useState('');
 
-  const handleDecode = () => {
-    if (!bocInput.trim()) {
-      setError('Please enter BoC base64 string');
+  const handleEncode = () => {
+    if (!jsonInput.trim()) {
+      setError('Please enter JSON data');
       return;
     }
 
-    const result = decodeFromBoC(bocInput);
+    const result = encodeToBoC(jsonInput);
 
     if (result.success) {
-      setDecodedResult(result.data!);
+      setEncodedResult(result.data!);
       setError('');
     } else {
       setError(result.error!);
-      setDecodedResult('');
+      setEncodedResult('');
     }
   };
 
   const handleLoadExample = () => {
-    setBocInput(getExampleBoC());
+    setJsonInput(getExampleJSON());
     setError('');
-    setDecodedResult('');
+    setEncodedResult('');
   };
 
   const handleCopyResult = async () => {
     try {
-      await Clipboard.setStringAsync(decodedResult);
-      Alert.alert('Copied!', 'Decoded JSON has been copied to clipboard');
+      await Clipboard.setStringAsync(encodedResult);
+      Alert.alert('Copied!', 'BoC base64 has been copied to clipboard');
     } catch {
       Alert.alert('Error', 'Failed to copy to clipboard');
     }
   };
 
   const handleClear = () => {
-    setBocInput('');
-    setDecodedResult('');
+    setJsonInput('');
+    setEncodedResult('');
     setError('');
-  };
-
-  const handlePaste = async () => {
-    try {
-      const text = await Clipboard.getStringAsync();
-      if (text) {
-        setBocInput(text);
-        setError('');
-        setDecodedResult('');
-      }
-    } catch {
-      Alert.alert('Error', 'Failed to read from clipboard');
-    }
   };
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/adaptive-icon.png')}
-          style={styles.reactLogo}
-        />
+        <IconSymbol
+          size={310}
+          color="#808080"
+          name="chevron.left.forwardslash.chevron.right"
+          style={styles.headerImage}
+        /> as React.ReactElement<unknown, string | React.JSXElementConstructor<any>>
       }>
       <ScrollView style={styles.container}>
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Decode</ThemedText>
+          <ThemedText type="title">Encode</ThemedText>
         </ThemedView>
+
         <TLBSchema />
 
-        <BoCInput
-          label="BoC Base64 Input"
-          placeholder="Enter BoC base64 string here..."
-          value={bocInput}
-          onChangeText={setBocInput}
-          onPaste={handlePaste}
+        <JSONInput
+          label="JSON Input"
+          placeholder="Enter JSON data here..."
+          value={jsonInput}
+          onChangeText={setJsonInput}
+          multiline={true}
         />
 
         {error ? (
@@ -96,8 +86,8 @@ export default function DecodeScreen() {
         ) : null}
 
         <ThemedView style={styles.buttonContainer}>
-          <TouchableOpacity onPress={handleDecode} style={styles.decodeButton}>
-            <ThemedText style={styles.buttonText}>Decode</ThemedText>
+          <TouchableOpacity onPress={handleEncode} style={styles.encodeButton}>
+            <ThemedText style={styles.buttonText}>Encode</ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleLoadExample} style={styles.exampleButton}>
@@ -110,8 +100,8 @@ export default function DecodeScreen() {
         </ThemedView>
 
         <ResultDisplay
-          title="Decoded JSON"
-          content={decodedResult}
+          title="Encoded BoC Base64"
+          content={encodedResult}
           onCopy={handleCopyResult}
         />
       </ScrollView>
@@ -120,22 +110,16 @@ export default function DecodeScreen() {
 }
 
 const styles = StyleSheet.create({
+  headerImage: {
+    color: '#808080',
+    bottom: -90,
+    left: -35,
+    position: 'absolute',
+  },
   titleContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     gap: 8,
     marginBottom: 16,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
   },
   container: {
     flex: 1,
@@ -153,7 +137,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 16,
   },
-  decodeButton: {
+  encodeButton: {
     backgroundColor: '#007AFF',
     paddingHorizontal: 20,
     paddingVertical: 12,
