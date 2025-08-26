@@ -16,7 +16,7 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
-    "@ton-community/tlb-runtime": "https://github.com/ton-community/tlb-runtime/releases/download/v1.0.0-alpha.1/ton-community-tlb-runtime-v1.0.0-alpha.2.tgz",
+    "@ton-community/tlb-runtime": "^1.0.0-alpha.2",
     "@ton/core": "^0.61.0",
     "buffer": "^6.0.3",
     "expo": "~53.0.22",
