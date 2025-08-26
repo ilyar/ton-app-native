@@ -9,9 +9,9 @@ import React, { useMemo, useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 export default function TonCoreDemoScreen() {
-  const [addressString, setAddressString] = useState<string>('Ef8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAU');
+  const [addressString] = useState<string>('Ef8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAU');
   const [addressParsed, setAddressParsed] = useState<string>('');
-  const [amountNano, setAmountNano] = useState<string>('1000000000');
+  const [amountNano] = useState<string>('1000000000');
   const [amountHuman, setAmountHuman] = useState<string>('');
   const [cellHash, setCellHash] = useState<string>('');
   const [bocBase64, setBocBase64] = useState<string>('');

@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint --max-warnings 0",
-    "lint:fix": "expo lint --fix",
+    "lint:fix": "expo lint --fix --max-warnings 0",
     "start": "expo start"
   },
   "dependencies": {
