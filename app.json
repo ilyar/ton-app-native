@@ -9,7 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tlbman.tonappnative",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -49,8 +53,9 @@
           }
         }
       ],
-      
-      ["./plugins/withPbkdf2Ext"]
+      [
+        "./plugins/withPbkdf2Ext"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
