@@ -1,6 +1,8 @@
-# Welcome to your Expo app 👋
+# ton-app-native 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App to check the functionality of the libraries [@ton/core](https://www.npmjs.com/package/@ton/core), [@ton/ton](https://www.npmjs.com/package/@ton/ton), [@ton/crypto](https://www.npmjs.com/package/@ton/crypto) and [@ton-community/tlb-runtime](https://www.npmjs.com/package/@ton-community/tlb-runtime) with [React Native](https://reactnative.dev/)
+
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app)
 
 ## Get started
 
@@ -14,6 +16,14 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
    ```bash
    npx expo start
+   ```
+   ```
+
+3. Build
+
+   ```bash
+   eas build --platform android --profile preview
+   eas build --platform ios --profile preview
    ```
 
 In the output, you'll find options to open the app in a
