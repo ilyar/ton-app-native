@@ -29,7 +29,7 @@ export default function ResultDisplay({
         <ThemedText style={styles.title}>{title}</ThemedText>
         {showCopyButton && onCopy && (
           <TouchableOpacity onPress={onCopy} style={styles.copyButton}>
-            <ThemedText style={styles.copyButtonText}>Copy</ThemedText>
+            <ThemedText style={styles.copyButtonText}>📋</ThemedText>
           </TouchableOpacity>
         )}
       </ThemedView>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   copyButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#0098EA',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 6,
