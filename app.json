@@ -55,7 +55,8 @@
       ],
       [
         "./plugins/withPbkdf2Ext"
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
