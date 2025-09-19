@@ -1,6 +1,10 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "react",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "strict": true,
     "paths": {
       "@/*": [

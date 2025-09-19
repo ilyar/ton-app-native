@@ -2,10 +2,10 @@ import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -28,22 +28,22 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: '@ton/core',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'WalletKit',
+          tabBarIcon: ({ color }) => <MaterialIcons color={color} size={28} name="wallet" />,
         }}
       />
       <Tabs.Screen
         name="decode"
         options={{
           title: 'Decode',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="doc.text.magnifyingglass" color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons color={color} size={28} name="toll" />,
         }}
       />
       <Tabs.Screen
         name="encode"
         options={{
           title: 'Encode',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="doc.text" color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons color={color} size={28} name="tonality" />,
         }}
       />
     </Tabs>
